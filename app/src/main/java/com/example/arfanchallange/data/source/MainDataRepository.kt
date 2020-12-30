@@ -6,32 +6,32 @@ import com.example.arfanchallange.data.RepoData
 import com.example.arfanchallange.data.source.local.MainDataLocalSource
 
 class MainDataRepository(
-    val remoteDataSource: MainDataSource,
-    val localDataSource: MainDataSource
+    private val remoteDataSource: MainDataSource,
+    private val localDataSource: MainDataSource
 ) : MainDataSource {
 
-    override fun getMainData(callback: MainDataSource.GetMainDataCallBack) {
-        remoteDataSource.getMainData(object : MainDataSource.GetMainDataCallBack {
+    override fun getMainData(callback: MainDataSource.GetMainDataCallback) {
+        remoteDataSource.getMainData(object : MainDataSource.GetMainDataCallback {
             override fun onDataLoaded(mainData: MainData?) {
                 callback.onDataLoaded(mainData)
             }
 
-            override fun onNotAvaliable() {
-                callback.onNotAvaliable()
+            override fun onNotAvailable() {
+                callback.onNotAvailable()
             }
 
             override fun onError(msg: String?) {
                 callback.onError(msg)
             }
 
+
         })
     }
 
-    override fun getRepoData(callback: MainDataSource.GetRepoDataCallBack) {
-        localDataSource.getRepoData(object : MainDataSource.GetRepoDataCallBack {
-
-            override fun onDataloaded(repoData: MutableLiveData<RepoData?>) {
-                callback.onDataloaded(repoData)
+    override fun getRepoData(callback: MainDataSource.GetRepoDataCallback) {
+        localDataSource.getRepoData(object : MainDataSource.GetRepoDataCallback {
+            override fun onDataLoaded(repoData: MutableList<RepoData?>) {
+                callback.onDataLoaded(repoData)
             }
 
             override fun onNotAvailable() {

@@ -1,21 +1,20 @@
 package com.example.arfanchallange.data.source
 
-import androidx.lifecycle.MutableLiveData
 import com.example.arfanchallange.data.MainData
 import com.example.arfanchallange.data.RepoData
 
 interface MainDataSource {
-    fun getMainData(callback: GetMainDataCallBack)
-    fun getRepoData(callback: GetRepoDataCallBack)
+    fun getMainData(callback: GetMainDataCallback)
+    fun getRepoData(callback: GetRepoDataCallback)
 
-    interface GetMainDataCallBack {
+    interface GetMainDataCallback{
         fun onDataLoaded(mainData: MainData?)
-        fun onNotAvaliable()
+        fun onNotAvailable()
         fun onError(msg: String?)
     }
 
-    interface GetRepoDataCallBack {
-        fun onDataloaded(repoData: MutableLiveData<RepoData?>)
+    interface GetRepoDataCallback{
+        fun onDataLoaded(repoData: MutableList<RepoData?>)
         fun onNotAvailable()
         fun onError(msg: String?)
     }

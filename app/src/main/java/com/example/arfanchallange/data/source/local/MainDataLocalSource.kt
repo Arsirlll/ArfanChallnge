@@ -6,10 +6,10 @@ import com.example.arfanchallange.data.source.MainDataSource
 
 class MainDataLocalSource  private constructor(private val preferences: SharedPreferences) : MainDataSource{
 
-    override fun getMainData(callback: MainDataSource.GetMainDataCallBack) {
+    override fun getMainData(callback: MainDataSource.GetMainDataCallback) {
     }
 
-    override fun getRepoData(callback: MainDataSource.GetRepoDataCallBack) {
+    override fun getRepoData(callback: MainDataSource.GetRepoDataCallback) {
     }
 
     companion object {
