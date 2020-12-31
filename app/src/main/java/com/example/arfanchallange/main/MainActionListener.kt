@@ -1,4 +1,5 @@
 package com.example.arfanchallange.main
 
-class MainActionListener {
+interface MainActionListener {
+    fun onClickRepos()
 }
