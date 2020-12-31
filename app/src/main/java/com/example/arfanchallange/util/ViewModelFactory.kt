@@ -35,7 +35,7 @@ class ViewModelFactory private constructor(
                 ?: synchronized(ViewModelFactory::class.java){
                     INSTANCE
                         ?: ViewModelFactory(
-                            application, Injection.providedMainDataRepository(application.applicationContext))
+                            application, Injection.providerMainDataRepository(application.applicationContext))
                             .also { INSTANCE = it }
                 }
 
