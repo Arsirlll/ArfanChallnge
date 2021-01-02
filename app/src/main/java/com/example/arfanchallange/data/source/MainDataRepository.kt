@@ -6,10 +6,9 @@ import com.example.arfanchallange.data.RepoData
 import com.example.arfanchallange.data.source.local.MainDataLocalSource
 
 class MainDataRepository(
-    private val remoteDataSource: MainDataSource,
-    private val localDataSource: MainDataSource
+    val remoteDataSource: MainDataSource,
+    val localDataSource: MainDataSource
 ) : MainDataSource {
-
     override fun getMainData(callback: MainDataSource.GetMainDataCallback) {
         remoteDataSource.getMainData(object : MainDataSource.GetMainDataCallback {
             override fun onDataLoaded(mainData: MainData?) {
@@ -23,7 +22,6 @@ class MainDataRepository(
             override fun onError(msg: String?) {
                 callback.onError(msg)
             }
-
 
         })
     }
@@ -46,7 +44,6 @@ class MainDataRepository(
     }
 
     companion object {
-
         private var INSTANCE: MainDataRepository? = null
 
         @JvmStatic
@@ -64,6 +61,6 @@ class MainDataRepository(
         fun destroyInstance() {
             INSTANCE = null
         }
-
     }
+
 }

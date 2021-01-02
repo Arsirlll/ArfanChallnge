@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.arfanchallange.data.source.MainDataRepository
 import com.example.arfanchallange.main.MainViewModel
-import com.example.arfanchallange.repo.RepoViewModel
 
 class ViewModelFactory private constructor(
     private val application: Application,
@@ -19,8 +18,6 @@ class ViewModelFactory private constructor(
         when{
             isAssignableFrom(MainViewModel::class.java) ->
                 MainViewModel(application,mainDataRepository)
-            isAssignableFrom(RepoViewModel::class.java) ->
-                RepoViewModel(application, mainDataRepository)
             else ->
                 throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }

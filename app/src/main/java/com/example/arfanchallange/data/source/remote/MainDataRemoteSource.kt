@@ -50,13 +50,10 @@ object MainDataRemoteSource : MainDataSource {
             .subscribeOn(Schedulers.io())
             .subscribe({
                 run {
-
                     if (it.isNotEmpty()) {
                         Log.i("xx", " ${it.size}")
-
-                        val listRepo: MutableList<RepoData?> = mutableListOf<RepoData?>()
+                        val listRepo : MutableList<RepoData?> = mutableListOf<RepoData?>()
                         for (item: RepoDataDao in it) {
-                            Log.i("xx", " -- ${item.description}")
                             val repoData = RepoData(
                                 item.name,
                                 item.language,
@@ -73,6 +70,6 @@ object MainDataRemoteSource : MainDataSource {
             }, {
                 callback.onError(it.message)
             })
-    }
 
+    }
 }

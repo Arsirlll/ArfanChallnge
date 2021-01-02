@@ -1,6 +1,5 @@
 package com.example.arfanchallange.api.dao
 
-
 data class MainDataDao(
     val avatar_url: String,
     val name: String,

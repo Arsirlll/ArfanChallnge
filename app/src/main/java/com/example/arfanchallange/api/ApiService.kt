@@ -1,6 +1,5 @@
 package com.example.arfanchallange.api
 
-import androidx.lifecycle.Observer
 import com.example.arfanchallange.api.dao.MainDataDao
 import com.example.arfanchallange.api.dao.RepoDataDao
 import com.example.arfanchallange.util.Constant
@@ -15,7 +14,7 @@ interface ApiService {
     @GET("users/{username}")
     fun getMainData(
         @Path("username") username: String
-    ):  Observable<MainDataDao>
+    ): Observable<MainDataDao>
 
     @GET("https://api.github.com/users/{username}/repos")
     fun getReposData(
@@ -25,17 +24,11 @@ interface ApiService {
     companion object Factory {
 
         fun create(): ApiService {
-
-            val retrofit = Retrofit.Builder()
-                .addCallAdapterFactory(
-                    RxJava2CallAdapterFactory.create()
-                )
-                .addConverterFactory(
-                    GsonConverterFactory.create()
-                )
+            var retrofit = Retrofit.Builder()
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(Constant.BASE_URL)
                 .build()
-
             return retrofit.create(ApiService::class.java)
         }
     }

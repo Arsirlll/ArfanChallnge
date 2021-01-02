@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupViewModel() {
         viewModel = obtainViewModel().apply {
             openRepo.observe(this@MainActivity, Observer {
-                startActivity(Intent(mActivity, RepoActivity::class.java))
+
             })
         }
     }
