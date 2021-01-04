@@ -13,30 +13,31 @@ class MainViewModel(application: Application, private val mainDataRepository: Ma
     AndroidViewModel(application) {
 
     val mainDataField: ObservableField<MainData> = ObservableField()
+
     internal val openRepo = SingleLiveEvent<MainData>()
 
-    fun start(){
+    fun start() {
         getMainData()
     }
 
-    fun openRepo(){
+    fun openRepo() {
         openRepo.value = mainDataField.get()
     }
 
-    private fun getMainData(){
+    private fun getMainData() {
         mainDataRepository.getMainData(object : MainDataSource.GetMainDataCallback{
             override fun onDataLoaded(mainData: MainData?) {
                 mainDataField.set(mainData)
             }
 
-            override fun onError(msg: String?) {
-                Toast.makeText(getApplication(), "Error: $msg", Toast.LENGTH_LONG).show()
+            override fun onNotAvailable() {
+                Toast.makeText(getApplication(), "Data not available", Toast.LENGTH_SHORT).show()
             }
 
-            override fun onNotAvailable() {
-                Toast.makeText(getApplication(), "Data not available", Toast.LENGTH_LONG).show()
+            override fun onError(msg: String?) {
+                Toast.makeText(getApplication(), "Error: ${msg}", Toast.LENGTH_SHORT).show()
             }
+
         })
     }
-
 }

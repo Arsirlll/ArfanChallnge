@@ -18,6 +18,8 @@ class ViewModelFactory private constructor(
         when{
             isAssignableFrom(MainViewModel::class.java) ->
                 MainViewModel(application,mainDataRepository)
+            // isAssignableFrom(RepoViewModel::class.java) ->
+            //    RepoViewModel(application,mainDataRepository)
             else ->
                 throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
